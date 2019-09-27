@@ -248,9 +248,14 @@ class InstagramManager extends AbstractSocialNetwork
             }
         }
 
-        if (isset($source->location) && ($location = $source->location)) {
-            $item->setLatitude($location->latitude);
-            $item->setLongitude($location->longitude);
+         if (isset($source->location)) {
+            $location = $source->location;
+            if(key_exists('latitude', $location) == true){
+                $item->setLatitude($location->latitude);
+            }
+            if(key_exists('longitude', $location) == true) {
+                $item->setLongitude($location->longitude);
+            }
         }
 
         $item->setComments($comments);
